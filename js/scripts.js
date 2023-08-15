@@ -26,18 +26,14 @@ function numberOfOccurrencesInText(word, text) {
 }
 
 function swearWords(text) {
-    console.log(text);
     const newTextArray = text.split(" ");
     let wordCount = 0;
     let badWords = ["zoinks", "muppeteer", "biffaroni", "loopdaloop"];
-    newTextArray.forEach(function (element) {
-        console.log(element, badWords);
-        if (badWords.includes(element)) {
-            wordCount++;
-        }
-        // return newTextArray;
-    });
-    console.log(wordCount);
+  newTextArray.forEach(function (element) {
+    if (badWords.includes(element)) {
+      wordCount++;
+    }
+  })
 }
 
 // UI Logic
