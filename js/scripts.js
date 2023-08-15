@@ -26,16 +26,18 @@ function numberOfOccurrencesInText(word, text) {
 }
 
 function swearWords(text) {
+    console.log(text);
     const newTextArray = text.split(" ");
     let wordCount = 0;
-    let variable = text;
     let badWords = ["zoinks", "muppeteer", "biffaroni", "loopdaloop"];
-    newTextArray.forEach(function (variable) {
-        if (variable.includes(badWords)) {
-            wordCount--;
+    newTextArray.forEach(function (element) {
+        console.log(element, badWords);
+        if (badWords.includes(element)) {
+            wordCount++;
         }
-        return newTextArray;
+        // return newTextArray;
     });
+    console.log(wordCount);
 }
 
 // UI Logic
@@ -48,6 +50,7 @@ function handleFormSubmission(event) {
     const occurrencesOfWord = numberOfOccurrencesInText(word, passage);
     document.getElementById("total-count").innerText = wordCount;
     document.getElementById("selected-count").innerText = occurrencesOfWord;
+    swearWords(passage);
 }
 
 window.addEventListener("load", function () {
