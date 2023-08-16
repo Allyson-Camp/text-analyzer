@@ -1,3 +1,4 @@
+//utility logic
 function isEmpty(testString) {
     return testString.trim().length === 0;
 }
