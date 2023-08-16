@@ -54,3 +54,13 @@ window.addEventListener("load", function () {
         .querySelector("form#word-counter")
         .addEventListener("submit", handleFormSubmission);
 });
+
+function boldPassage(word, text) {
+    if ((text.trim().length === 0) || (word.trim().length === 0)) {
+      return null;
+    }
+    const p = document.createElement("p");
+    p.append(text);
+    return p;
+  }
+console.log(boldPassage("hi", "hello hi hello"));

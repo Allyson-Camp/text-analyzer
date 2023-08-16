@@ -83,3 +83,19 @@ const text = "zoinks scooby!"
 swearWords(text);
 Expected output: 1
 
+Describe: boldPassage()
+
+Test #1: "It should return null if no word or text is entered."
+Code:
+const text = "";
+const word = "";
+boldPassage(word, text);
+Expected Output: null
+
+
+Test #2: "It should return a non-matching word in a p tag."
+Code:
+const word = "hello";
+const text = "yo";
+boldPassage(word, text);
+Expected Output: <p>yo</p>
