@@ -1,8 +1,12 @@
+function isEmpty(testString) {
+    return testString.trim().length === 0;
+}
+
 // Business Logic
 function wordCounter(text) {
-    if (text.trim().length === 0) {
-        return 0;
-    }
+     if (isEmpty(text)) {
+         return 0;
+     }
     let wordCount = 0;
     const textArray = text.split(" ");
     textArray.forEach(function (element) {
@@ -12,9 +16,9 @@ function wordCounter(text) {
 }
 
 function numberOfOccurrencesInText(word, text) {
-    if (word.trim().length === 0) {
-        return 0;
-    }
+     if (isEmpty(text)) {
+         return 0;
+     }
     const textArray = text.split(" ");
     let wordCount = 0;
     textArray.forEach(function (element) {
@@ -25,16 +29,36 @@ function numberOfOccurrencesInText(word, text) {
     return wordCount;
 }
 
-function swearWords(text) {
-    const newTextArray = text.split(" ");
-    let wordCount = 0;
-    let badWords = ["zoinks", "muppeteer", "biffaroni", "loopdaloop"];
-  newTextArray.forEach(function (element) {
-    if (badWords.includes(element)) {
-      wordCount++;
-    }
-  })
+function boldPassage(word, text) {
+     if (isEmpty(word) || isEmpty(text)) {
+         return null;
+     }
+    const p = document.createElement("p");
+    let textArray = text.split(" ");
+    textArray.forEach(function (element, index) {
+        if (word === element) {
+            const bold = document.createElement("strong");
+            bold.append(element);
+            p.append(bold);
+        } else {
+            p.append(element);
+        }
+        if (index !== textArray.length - 1) {
+            p.append(" ");
+        }
+    });
+    return p;
 }
+// ***WIP***
+//  function swearWords(text) {
+//     const newTextArray = text.split(" ");
+//     let wordCount = 0;
+//     let badWords = ["zoinks", "muppeteer", "biffaroni", "loopdaloop"];
+//     newTextArray.forEach(function (element) {
+//         if (badWords.includes(element)) {
+//             wordCount++;
+//         }
+//     });
 
 // UI Logic
 
@@ -46,7 +70,13 @@ function handleFormSubmission(event) {
     const occurrencesOfWord = numberOfOccurrencesInText(word, passage);
     document.getElementById("total-count").innerText = wordCount;
     document.getElementById("selected-count").innerText = occurrencesOfWord;
-    swearWords(passage);
+    let boldedPassage = boldPassage(word, passage);
+    if (boldedPassage) {
+        document.querySelector("div#bolded-passage").append(boldedPassage);
+    } else {
+        document.querySelector("div#bolded-passage").innerText = null;
+    }
+    // ***WIP*** swearWords(passage);
 }
 
 window.addEventListener("load", function () {
@@ -54,19 +84,3 @@ window.addEventListener("load", function () {
         .querySelector("form#word-counter")
         .addEventListener("submit", handleFormSubmission);
 });
-
-
-  function boldPassage(word, text) {
-    if ((text.trim().length === 0) || (word.trim().length === 0)) {
-      return null;
-    }
-    const p = document.createElement("p");
-    if (word === text) {
-      const bold = document.createElement("strong");
-      bold.append(text);
-      p.append(bold);
-    } else {
-      p.append(text);
-    }
-    return p;
-  }
